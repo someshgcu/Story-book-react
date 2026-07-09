@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Adventure - Interactive Storybook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Title Screen -->
+        <div class="screen title-screen active" id="title-screen">
+            <div class="title-content">
+                <div class="book-decoration">
+                    <svg class="book-icon" viewBox="0 0 60 50" width="60" height="50">
+                        <rect x="5" y="5" width="50" height="40" rx="3" fill="#fff" stroke="#4A90D9" stroke-width="2"/>
+                        <line x1="30" y1="5" x2="30" y2="45" stroke="#4A90D9" stroke-width="2"/>
+                        <rect x="8" y="8" width="19" height="3" fill="#E0E0E0"/>
+                        <rect x="8" y="14" width="19" height="3" fill="#E0E0E0"/>
+                        <rect x="33" y="8" width="19" height="3" fill="#E0E0E0"/>
+                        <rect x="33" y="14" width="19" height="3" fill="#E0E0E0"/>
+                    </svg>
+                </div>
+                <h1 class="main-title">React Adventure</h1>
+                <p class="subtitle">Learn React with Mr. React & Maya!</p>
+                
+                <div class="characters-preview">
+                    <div class="char-preview">
+                        <img class="character-img teacher-img" src="images/teacher.png" alt="Mr. React - Teacher">
+                        <span class="char-name">Mr. React</span>
+                    </div>
+                    
+                    <span class="and-text">&</span>
+                    
+                    <div class="char-preview">
+                        <img class="character-img student-img" src="images/student.png" alt="Maya - Student">
+                        <span class="char-name">Maya</span>
+                    </div>
+                </div>
+                
+                <button class="start-btn" id="start-btn">Start Adventure</button>
+            </div>
+        </div>
+
+        <!-- Story Screen -->
+        <div class="screen story-screen" id="story-screen">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+
+            <div class="scene-container" id="scene-container"></div>
+
+            <div class="stage">
+                <!-- Teacher Side -->
+                <div class="actor-side teacher-side">
+                    <div class="speech-bubble teacher-bubble" id="teacher-bubble">
+                        <div class="bubble-name">Mr. React</div>
+                        <div class="bubble-text" id="teacher-text"></div>
+                        <div class="bubble-tail"></div>
+                    </div>
+                    <img class="actor-img teacher-actor" src="images/teacher.png" alt="Mr. React">
+                </div>
+
+                <!-- Student Side -->
+                <div class="actor-side student-side">
+                    <div class="speech-bubble student-bubble" id="student-bubble">
+                        <div class="bubble-name">Maya</div>
+                        <div class="bubble-text" id="student-text"></div>
+                        <div class="bubble-tail"></div>
+                    </div>
+                    <img class="actor-img student-actor" src="images/student.png" alt="Maya">
+                </div>
+            </div>
+
+            <div class="demo-area" id="demo-area"></div>
+
+            <div class="nav-bar">
+                <button class="nav-btn" id="prev-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Back
+                </button>
+                <div class="center-controls">
+                    <span class="scene-counter"><span id="current">1</span> / 8</span>
+                    <button class="voice-toggle" id="voice-toggle" title="Toggle Voice">
+                        <svg class="voice-on" viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        </svg>
+                        <svg class="voice-off" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none">
+                            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                        </svg>
+                    </button>
+                </div>
+                <button class="nav-btn primary" id="next-btn">
+                    Next
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Completion Screen -->
+        <div class="screen completion-screen" id="completion-screen">
+            <div class="completion-content">
+                <svg class="trophy-svg" viewBox="0 0 100 100" width="100" height="100">
+                    <path d="M30 20h40v35c0 15-10 25-20 25s-20-10-20-25V20z" fill="#FFD700"/>
+                    <path d="M30 30H15c0 15 8 20 15 20v-20z" fill="#FFA500"/>
+                    <path d="M70 30h15c0 15-8 20-15 20v-20z" fill="#FFA500"/>
+                    <rect x="45" y="75" width="10" height="10" fill="#FFD700"/>
+                    <rect x="35" y="85" width="30" height="8" rx="2" fill="#FFD700"/>
+                    <path d="M50 35 l-5 10h10z" fill="#8B4513"/>
+                </svg>
+                <h1>Congratulations!</h1>
+                <p>You completed the React Adventure!</p>
+                <div class="concepts-list">
+                    <div class="concept-item">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#4CAF50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Event Handling
+                    </div>
+                    <div class="concept-item">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#4CAF50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Forms in React
+                    </div>
+                    <div class="concept-item">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#4CAF50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Client-Side Routing
+                    </div>
+                    <div class="concept-item">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#4CAF50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Context API
+                    </div>
+                    <div class="concept-item">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#4CAF50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        Components & Props
+                    </div>
+                    <div class="concept-item">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#4CAF50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        State Management
+                    </div>
+                    <div class="concept-item">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#4CAF50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        React Hooks
+                    </div>
+                    <div class="concept-item">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#4CAF50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        useEffect Hook
+                    </div>
+                </div>
+                <div class="completion-buttons">
+                    <button class="start-btn" id="restart-btn">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
