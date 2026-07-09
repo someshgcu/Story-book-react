@@ -18,6 +18,7 @@ body {
     background: #1a202c;
     background-image: radial-gradient(circle, #2d3748 0%, #1a202c 100%);
     min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -30,6 +31,7 @@ body {
 .app {
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     max-width: 1200px;
     max-height: 900px;
     position: relative;
@@ -45,6 +47,7 @@ body {
     .app {
         border-radius: 16px;
         height: 95vh;
+        height: 95dvh;
         width: 95vw;
     }
 }
@@ -2639,6 +2642,7 @@ body {
     max-width: 500px;
     margin: 0 auto;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
