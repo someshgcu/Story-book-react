@@ -116,18 +116,20 @@ class ReactAdventure {
         const loadVoices = () => {
             const voices = this.synth.getVoices();
             
+            // Get all english voices to try and ensure distinct voices
+            const enVoices = voices.filter(v => v.lang.startsWith('en'));
+            
             // Find male voice for teacher (prefer English)
-            this.teacherVoice = voices.find(v => v.name.includes('Male') && v.lang.startsWith('en')) ||
-                               voices.find(v => v.lang.startsWith('en') && v.name.includes('Google')) ||
-                               voices.find(v => v.lang.startsWith('en')) ||
-                               voices[0];
+            this.teacherVoice = enVoices.find(v => v.name.toLowerCase().includes('male')) ||
+                                enVoices.find(v => v.lang === 'en-GB') ||
+                                enVoices[0] || voices[0];
             
             // Find female voice for student (prefer English)
-            this.studentVoice = voices.find(v => v.name.includes('Female') && v.lang.startsWith('en')) ||
-                               voices.find(v => v.lang.startsWith('en') && v.name.includes('Samantha')) ||
-                               voices.find(v => v.lang.startsWith('en') && v.name.includes('Google')) ||
-                               voices.find(v => v.lang.startsWith('en')) ||
-                               voices[0];
+            this.studentVoice = enVoices.find(v => v.name.toLowerCase().includes('female')) ||
+                                enVoices.find(v => v.name.includes('Samantha') || v.name.includes('Victoria') || v.name.includes('Zira')) ||
+                                enVoices.find(v => v.lang === 'en-US' && v !== this.teacherVoice) ||
+                                enVoices.find(v => v !== this.teacherVoice) ||
+                                enVoices[0] || voices[0];
         };
         
         loadVoices();
@@ -149,7 +151,8 @@ class ReactAdventure {
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.voice = speaker === 'teacher' ? this.teacherVoice : this.studentVoice;
             utterance.rate = 0.85; // Slightly slower to match text
-            utterance.pitch = speaker === 'teacher' ? 0.9 : 1.2;
+            // Use less extreme pitch shifts to avoid robotic distortion on mobile TTS engines
+            utterance.pitch = speaker === 'teacher' ? 0.95 : 1.1;
             utterance.volume = 1;
             
             // Show speaking indicator

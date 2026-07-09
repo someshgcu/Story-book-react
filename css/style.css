@@ -3336,9 +3336,9 @@ body {
     .stage { height: 180px; padding: 0 2%; bottom: 60px; align-items: flex-end; }
     .actor-img { width: 130px; max-height: 190px; }
     
-    .speech-bubble { width: 145px; padding: 8px 10px; font-size: 0.8rem; margin-bottom: 5px; }
-    .teacher-bubble { right: -5px; }
-    .student-bubble { left: -5px; }
+    .speech-bubble { width: 140px; padding: 8px 10px; font-size: 0.8rem; margin-bottom: 5px; }
+    .teacher-bubble { right: 10px; }
+    .student-bubble { left: 10px; }
     .bubble-name { font-size: 0.7rem; margin-bottom: 3px; }
     .bubble-text { font-size: 0.8rem; line-height: 1.3; }
     .teacher-bubble .bubble-tail { left: 20px; border-top-width: 12px; }
